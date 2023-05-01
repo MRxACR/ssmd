@@ -1,0 +1,1419 @@
+[
+    {
+        "id": "c870e02a16be94bb",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6955387a5ad9b343",
+        "type": "change",
+        "z": "c870e02a16be94bb",
+        "name": "ecg",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.ecg",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "time",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 280,
+        "wires": [
+            [
+                "24ebc2b6974cfe0c"
+            ]
+        ]
+    },
+    {
+        "id": "24ebc2b6974cfe0c",
+        "type": "ui_chart",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "group": "62216a47d8dea953",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "label": "ECG",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "auto",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "300",
+        "removeOlder": "30",
+        "removeOlderPoints": "80",
+        "removeOlderUnit": "1",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 1030,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "030a0a2811380957",
+        "type": "ui_button",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "group": "62216a47d8dea953",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Reset ECG",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 270,
+        "y": 500,
+        "wires": [
+            [
+                "a95b745ac05c3ebb"
+            ]
+        ]
+    },
+    {
+        "id": "a95b745ac05c3ebb",
+        "type": "change",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "[]",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 720,
+        "y": 500,
+        "wires": [
+            [
+                "24ebc2b6974cfe0c"
+            ]
+        ]
+    },
+    {
+        "id": "099df3fa17a910c0",
+        "type": "serial in",
+        "z": "c870e02a16be94bb",
+        "name": "Arduino Serial IN",
+        "serial": "70ca6dc67003c90c",
+        "x": 140,
+        "y": 340,
+        "wires": [
+            [
+                "e057b749b24e4e97"
+            ]
+        ]
+    },
+    {
+        "id": "e057b749b24e4e97",
+        "type": "json",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 330,
+        "y": 340,
+        "wires": [
+            [
+                "6955387a5ad9b343",
+                "4e95358f7b518087",
+                "b979726616c4ed4a",
+                "499b6e73559fe84e",
+                "29bedbbcda060fe0",
+                "d7cd4ad13f1aac0c",
+                "9b4ac5f7f07d1780",
+                "c882e50ef09842f8"
+            ]
+        ]
+    },
+    {
+        "id": "90420aa3871d09de",
+        "type": "ui_gauge",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "group": "bf6384f4fdaaf253",
+        "order": 4,
+        "width": "6",
+        "height": "6",
+        "gtype": "wave",
+        "title": "oxymetre",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 1040,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "4e95358f7b518087",
+        "type": "change",
+        "z": "c870e02a16be94bb",
+        "name": "oxymetre",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.oxy",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 320,
+        "wires": [
+            [
+                "90420aa3871d09de"
+            ]
+        ]
+    },
+    {
+        "id": "5f8313bce5550f88",
+        "type": "ui_gauge",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "group": "bf6384f4fdaaf253",
+        "order": 3,
+        "width": "6",
+        "height": "6",
+        "gtype": "gage",
+        "title": "tempCorp",
+        "label": "°c",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#e6e600",
+            "#26e600",
+            "#ca3838"
+        ],
+        "seg1": "34",
+        "seg2": "38",
+        "x": 1040,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "b979726616c4ed4a",
+        "type": "change",
+        "z": "c870e02a16be94bb",
+        "name": "tempCorp",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.tempCorp",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 360,
+        "wires": [
+            [
+                "5f8313bce5550f88"
+            ]
+        ]
+    },
+    {
+        "id": "499b6e73559fe84e",
+        "type": "change",
+        "z": "c870e02a16be94bb",
+        "name": "temperature",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.temperature",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 400,
+        "wires": [
+            [
+                "b37b0a235685d41e"
+            ]
+        ]
+    },
+    {
+        "id": "b37b0a235685d41e",
+        "type": "ui_gauge",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "group": "d1a2c01e15d431ba",
+        "order": 2,
+        "width": "6",
+        "height": "6",
+        "gtype": "donut",
+        "title": "temperature",
+        "label": "°c",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#0077e6",
+            "#26e600",
+            "#eb0017"
+        ],
+        "seg1": "20",
+        "seg2": "30",
+        "x": 1050,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "f2895adb81750770",
+        "type": "change",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 720,
+        "y": 540,
+        "wires": [
+            [
+                "90420aa3871d09de",
+                "5f8313bce5550f88"
+            ]
+        ]
+    },
+    {
+        "id": "d0f5708c3ba8a588",
+        "type": "ui_chart",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "group": "f340cf1e14f95259",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "label": "Accéléromètre",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "auto",
+        "interpolate": "step",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-5",
+        "ymax": "5",
+        "removeOlder": "10",
+        "removeOlderPoints": "100",
+        "removeOlderUnit": "1",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 1060,
+        "y": 920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "29bedbbcda060fe0",
+        "type": "change",
+        "z": "c870e02a16be94bb",
+        "name": "Accel",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.accel",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 940,
+        "wires": [
+            [
+                "30fedc109db60777",
+                "20c11e143331674e",
+                "eb7da6ceef3401d7"
+            ]
+        ]
+    },
+    {
+        "id": "30fedc109db60777",
+        "type": "change",
+        "z": "c870e02a16be94bb",
+        "name": "X",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.x",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "X",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 900,
+        "wires": [
+            [
+                "d0f5708c3ba8a588"
+            ]
+        ]
+    },
+    {
+        "id": "20c11e143331674e",
+        "type": "change",
+        "z": "c870e02a16be94bb",
+        "name": "Y",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.y",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Y",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 940,
+        "wires": [
+            [
+                "d0f5708c3ba8a588"
+            ]
+        ]
+    },
+    {
+        "id": "eb7da6ceef3401d7",
+        "type": "change",
+        "z": "c870e02a16be94bb",
+        "name": "Z",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.z",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Z",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 980,
+        "wires": [
+            [
+                "d0f5708c3ba8a588"
+            ]
+        ]
+    },
+    {
+        "id": "dea596a211b4beee",
+        "type": "ui_chart",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "group": "169c70cb3933f83e",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "label": "Gyroscope",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "auto",
+        "interpolate": "step",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-10",
+        "ymax": "10",
+        "removeOlder": "10",
+        "removeOlderPoints": "100",
+        "removeOlderUnit": "1",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 1050,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d7cd4ad13f1aac0c",
+        "type": "change",
+        "z": "c870e02a16be94bb",
+        "name": "Gyro",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.gyro",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 1080,
+        "wires": [
+            [
+                "74cc35c2f6988159",
+                "e05457056b6018f1",
+                "32ff7f2fc4b27445"
+            ]
+        ]
+    },
+    {
+        "id": "74cc35c2f6988159",
+        "type": "change",
+        "z": "c870e02a16be94bb",
+        "name": "X",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.x",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "X",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 1040,
+        "wires": [
+            [
+                "dea596a211b4beee"
+            ]
+        ]
+    },
+    {
+        "id": "e05457056b6018f1",
+        "type": "change",
+        "z": "c870e02a16be94bb",
+        "name": "Y",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.y",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Y",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 1080,
+        "wires": [
+            [
+                "dea596a211b4beee"
+            ]
+        ]
+    },
+    {
+        "id": "32ff7f2fc4b27445",
+        "type": "change",
+        "z": "c870e02a16be94bb",
+        "name": "Z",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.z",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Z",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 1120,
+        "wires": [
+            [
+                "dea596a211b4beee"
+            ]
+        ]
+    },
+    {
+        "id": "4e69e3d5df45833a",
+        "type": "ui_switch",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "label": "Activation / Désactivation ECG",
+        "tooltip": "",
+        "group": "62216a47d8dea953",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "a",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "b",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "x": 1110,
+        "y": 500,
+        "wires": [
+            [
+                "ffcaa92075d6015a"
+            ]
+        ]
+    },
+    {
+        "id": "8790c05d9393514c",
+        "type": "debug",
+        "z": "c870e02a16be94bb",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1180,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "ffcaa92075d6015a",
+        "type": "serial out",
+        "z": "c870e02a16be94bb",
+        "name": "Arduino Serial OUT",
+        "serial": "70ca6dc67003c90c",
+        "x": 1430,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "a5e2be6ac965d19f",
+        "type": "ui_switch",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "label": "Activation / Désactivation Température",
+        "tooltip": "",
+        "group": "bf6384f4fdaaf253",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "e",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "f",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "x": 1090,
+        "y": 540,
+        "wires": [
+            [
+                "ffcaa92075d6015a"
+            ]
+        ]
+    },
+    {
+        "id": "845847e259be16fe",
+        "type": "ui_switch",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "label": "Activation / Désactivation Oxymètre",
+        "tooltip": "",
+        "group": "bf6384f4fdaaf253",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "c",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "d",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "x": 1100,
+        "y": 580,
+        "wires": [
+            [
+                "ffcaa92075d6015a"
+            ]
+        ]
+    },
+    {
+        "id": "aec55efa7bd72c21",
+        "type": "ui_switch",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "label": "Activation / Désactivation Accéléromètre",
+        "tooltip": "",
+        "group": "f340cf1e14f95259",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "g",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "h",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "x": 1080,
+        "y": 620,
+        "wires": [
+            [
+                "ffcaa92075d6015a"
+            ]
+        ]
+    },
+    {
+        "id": "ef2c7d6705bd5cae",
+        "type": "ui_switch",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "label": "Activation / Désactivation Gyroscope",
+        "tooltip": "",
+        "group": "169c70cb3933f83e",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "i",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "j",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "x": 1090,
+        "y": 660,
+        "wires": [
+            [
+                "ffcaa92075d6015a"
+            ]
+        ]
+    },
+    {
+        "id": "7c5042a7f19d5610",
+        "type": "ui_switch",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "label": "Activation / Désactivation Domotique",
+        "tooltip": "",
+        "group": "d1a2c01e15d431ba",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "k",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "l",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "x": 1090,
+        "y": 700,
+        "wires": [
+            [
+                "ffcaa92075d6015a"
+            ]
+        ]
+    },
+    {
+        "id": "29230d2539ef4617",
+        "type": "ui_button",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "group": "bf6384f4fdaaf253",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Reset Temperature, Oxymètre",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 210,
+        "y": 540,
+        "wires": [
+            [
+                "f2895adb81750770"
+            ]
+        ]
+    },
+    {
+        "id": "747dc41f74db511b",
+        "type": "ui_button",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "group": "f340cf1e14f95259",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Reset Accéléromètre",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 240,
+        "y": 620,
+        "wires": [
+            [
+                "71beaa052b05afc9"
+            ]
+        ]
+    },
+    {
+        "id": "e79fa21dbc8d2ae7",
+        "type": "ui_button",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "group": "169c70cb3933f83e",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Reset Gyroscope",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 250,
+        "y": 660,
+        "wires": [
+            [
+                "5903092ad059b8ef"
+            ]
+        ]
+    },
+    {
+        "id": "719f6ee79982dcfd",
+        "type": "ui_button",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "group": "d1a2c01e15d431ba",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Reset Domotique",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 250,
+        "y": 580,
+        "wires": [
+            [
+                "863b7776d6358e72"
+            ]
+        ]
+    },
+    {
+        "id": "863b7776d6358e72",
+        "type": "change",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 720,
+        "y": 580,
+        "wires": [
+            [
+                "b37b0a235685d41e",
+                "92a48a8530ab955b"
+            ]
+        ]
+    },
+    {
+        "id": "5903092ad059b8ef",
+        "type": "change",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "[]",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 720,
+        "y": 660,
+        "wires": [
+            [
+                "dea596a211b4beee"
+            ]
+        ]
+    },
+    {
+        "id": "71beaa052b05afc9",
+        "type": "change",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "[]",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 720,
+        "y": 620,
+        "wires": [
+            [
+                "d0f5708c3ba8a588"
+            ]
+        ]
+    },
+    {
+        "id": "9b4ac5f7f07d1780",
+        "type": "change",
+        "z": "c870e02a16be94bb",
+        "name": "Logs",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.log",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 240,
+        "wires": [
+            [
+                "1de2a85f85d549f1"
+            ]
+        ]
+    },
+    {
+        "id": "92a48a8530ab955b",
+        "type": "ui_gauge",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "group": "d1a2c01e15d431ba",
+        "order": 2,
+        "width": "6",
+        "height": "6",
+        "gtype": "wave",
+        "title": "Humidité",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#0077e6",
+            "#26e600",
+            "#eb0017"
+        ],
+        "seg1": "20",
+        "seg2": "30",
+        "x": 1040,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "c882e50ef09842f8",
+        "type": "change",
+        "z": "c870e02a16be94bb",
+        "name": "humidité",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.humedity",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 440,
+        "wires": [
+            [
+                "92a48a8530ab955b"
+            ]
+        ]
+    },
+    {
+        "id": "1de2a85f85d549f1",
+        "type": "function",
+        "z": "c870e02a16be94bb",
+        "name": "function 1",
+        "func": "let logs = flow.get(\"logs\") || [];\nlogs.unshift({\n    \"error\": msg.payload\n});\n\nif(logs.length > 50) logs.pop();\n\nmsg.payload = logs;\n\n\nflow.set(\"logs\", logs);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "flow.set(\"logs\", []);",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 240,
+        "wires": [
+            [
+                "8790c05d9393514c",
+                "9277eee6b017d9ab"
+            ]
+        ]
+    },
+    {
+        "id": "9277eee6b017d9ab",
+        "type": "ui_template",
+        "z": "c870e02a16be94bb",
+        "group": "3854ce052080e72f",
+        "name": "",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "format": "<div id=\"{{'my_'+$id}}\" style=\"{{'color:'+theme.base_color}}\">{{msg.payload}}</div>\n<script>\n    (function(scope) {\n  scope.$watch('msg', function(msg) {\n    if (msg) {\n      // Do something when msg arrives\n      $(\"#my_\"+scope.$id).html(msg.payload);\n    }\n  });\n})(scope);\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 1180,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2a83f6babe5d9f05",
+        "type": "ui_switch",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "label": "Activation / Désactivation Moteur",
+        "tooltip": "",
+        "group": "d1a2c01e15d431ba",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "m",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "n",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "x": 1100,
+        "y": 740,
+        "wires": [
+            [
+                "ffcaa92075d6015a"
+            ]
+        ]
+    },
+    {
+        "id": "1649ce53bdc5ffac",
+        "type": "ui_switch",
+        "z": "c870e02a16be94bb",
+        "name": "",
+        "label": "Activation / Désactivation Climatiseur",
+        "tooltip": "",
+        "group": "d1a2c01e15d431ba",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "o",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "p",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "x": 1090,
+        "y": 800,
+        "wires": [
+            [
+                "ffcaa92075d6015a"
+            ]
+        ]
+    },
+    {
+        "id": "62216a47d8dea953",
+        "type": "ui_group",
+        "name": "Header",
+        "tab": "9b1d12334193bac1",
+        "order": 1,
+        "disp": false,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "70ca6dc67003c90c",
+        "type": "serial-port",
+        "serialport": "/dev/ttyACM0",
+        "serialbaud": "115200",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "bf6384f4fdaaf253",
+        "type": "ui_group",
+        "name": "Main",
+        "tab": "9b1d12334193bac1",
+        "order": 2,
+        "disp": false,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "d1a2c01e15d431ba",
+        "type": "ui_group",
+        "name": "Group 3",
+        "tab": "7b0d2d201b2318f0",
+        "order": 3,
+        "disp": false,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "f340cf1e14f95259",
+        "type": "ui_group",
+        "name": "Group 1",
+        "tab": "7b0d2d201b2318f0",
+        "order": 1,
+        "disp": false,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "169c70cb3933f83e",
+        "type": "ui_group",
+        "name": "Group 2",
+        "tab": "7b0d2d201b2318f0",
+        "order": 2,
+        "disp": false,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "3854ce052080e72f",
+        "type": "ui_group",
+        "name": "Group 1",
+        "tab": "27e32f59aa56efb7",
+        "order": 1,
+        "disp": false,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "9b1d12334193bac1",
+        "type": "ui_tab",
+        "name": "Capteurs Médical",
+        "icon": "accessible",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "7b0d2d201b2318f0",
+        "type": "ui_tab",
+        "name": "Domotique",
+        "icon": "home",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "27e32f59aa56efb7",
+        "type": "ui_tab",
+        "name": "Logs",
+        "icon": "code",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    }
+]
